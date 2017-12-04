@@ -11,4 +11,5 @@ result2 = [(index, row.index(inital)) for index, row in enumerate(s.rows) if ini
 
 result = abs(result1[0][0] - result2[0][0]) + abs(result1[0][1] - result2[0][1])
 
+print(result1)
 print(result)
