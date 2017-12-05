@@ -548,8 +548,7 @@ qddpdk trfxpip pnsowj hidgvnf prur rsrautp aamykfm fysqjmq xwzjane mbmtxhf oqctt
 lfd eops govslp ultbye vrqai hcjkcf snpape
 cbok koumkad otpozb pqcs emilpe wpcyvxd bock
 spjb xkkak anuvk ejoklh nyerw bsjp zxuq vcwitnd xxtjmjg zfgq xkpf
-juo pmiyoh xxk myphio ogfyf dovlmwm moevao qqxidn
-"""
+juo pmiyoh xxk myphio ogfyf dovlmwm moevao qqxidn"""
 
 result = validpassphrases(resultInput)
 print (result)
