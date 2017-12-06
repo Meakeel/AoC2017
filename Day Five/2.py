@@ -1,10 +1,13 @@
+import timeit
 def mazeEscape(value):
+    start_time = timeit.default_timer()
     matrix = []
     matrix = value.splitlines()
 
     for y in range(len(matrix)):
         matrix[y] = int(matrix[y])
 
+    print(timeit.default_timer() - start_time)
     escaped = False
     counter = 0
     mazeLength = len(matrix) - 1
@@ -23,6 +26,7 @@ def mazeEscape(value):
         if position > mazeLength:
             escaped = True
 
+    print(timeit.default_timer() - start_time)
     return(counter)
 
 
