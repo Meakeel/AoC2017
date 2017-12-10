@@ -1,34 +1,50 @@
-def processStream(stream):
-    ignore_garbage = False
-    result = 0
-    open_data = 0
-    garbage_count = 0
-    open_garbage = False
+def encrpyt(data, numberInLoops):
+    denseArray = []
+    currentPosition = 0
+    skipSize = 0
     
-    for c in stream:
-        if open_garbage:
-            if ignore_garbage:
-                ignore_garbage = False
-            elif c == '>':
-                open_garbage = False
-            elif c == '!':
-                ignore_garbage = True
-            else:
-                garbage_count += 1
-        else:
-            if c == '{':
-                open_data += 1
-            elif c == '<':
-                open_garbage = True
-            elif c == '}':
-                result += open_data
-                open_data -= 1
-    return garbage_count
+    matrix = [ord(x) for x in data] + [17, 31, 73, 47, 23]
 
+    for round in range(64):
+        for i in range(len(matrix)):
+            arrayToReverse = []
 
-# opens file with name of "test.txt"
-f = open("e:\Personal\Advent of Code\Day 9\input.txt", "r")
-wholeString = f.readline()
+            # Get the numbers to reverse
+            for x in range(matrix[i]):
+                n = (currentPosition + x) % len(numberInLoops)
+                arrayToReverse.append(numberInLoops[n])
 
-result = processStream(wholeString)
-print(result)
+            # revserse them
+            arrayToReverse.reverse()
+
+            # and send them back
+            for x in range(matrix[i]):
+                n = (currentPosition + x) % len(numberInLoops)
+                numberInLoops[n] = arrayToReverse[x]
+
+            currentPosition += matrix[i]
+            currentPosition += skipSize
+            currentPosition = currentPosition % len(numberInLoops)
+
+            skipSize += 1
+
+    #calculate the sparse hash list 16 numbers
+
+    for x in range(0, 16):
+        subslice = numberInLoops[16 * x:16 * x + 16]
+
+        toAdd = subslice[0]
+        for sub in range(1, len(subslice)):
+            toAdd = toAdd ^ subslice[sub]
+
+        toHex = '%02x' % toAdd
+        denseArray.append(toHex)
+    
+    print(''.join(denseArray))
+    
+    return 0
+
+puzzleInput = "189,1,111,246,254,2,0,120,215,93,255,50,84,15,94,62"
+#puzzleInput="1,2,3"
+puzzleInputLoops = [x for x in range(0, 256)]
+result = encrpyt(puzzleInput, puzzleInputLoops)
